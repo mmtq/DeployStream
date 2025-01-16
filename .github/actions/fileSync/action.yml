@@ -1,23 +1,24 @@
-name: Deploy on Push
+name: "File Sync to VPS"
 
-on:
-  push:
-    branches:
-      - main
+description: "Sync files from the repository to a VPS using rsync over SSH."
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+inputs:
+  SSH_USERNAME:
+    description: "Username for the SSH connection"
+    required: true
+  SSH_IPADDRESS:
+    description: "IP address of the VPS"
+    required: true
+  SSH_PASSWORD:
+    description: "Password for the SSH connection"
+    required: true
+  LOCAL_PATH:
+    description: "Path to the local files to be synced"
+    required: true
+  REMOTE_PATH:
+    description: "Destination path on the VPS"
+    required: true
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-    - name: Deploy
-      uses: ./.github/actions/fileSync
-      with:
-        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-        SSH_IPADDRESS: ${{ secrets.SSH_IPADDRESS }}
-        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        LOCAL_PATH: ${{ secrets.LOCAL_PATH }}
-        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+runs:
+  using: "node16"
+  main: "main.js"

@@ -1,15 +1,17 @@
-const { execSync } = require('child_process');
 const core = require('@actions/core');
 const { exec } = require('@actions/exec');
 
 async function run() {
   try {
     // Get environment variables
-    const username = core.getInput('SSH_USERNAME');
-    const ipAddress = core.getInput('SSH_IPADDRESS');
-    const password = core.getInput('SSH_PASSWORD');
-    const localPath = core.getInput('LOCAL_PATH');
-    const remotePath = core.getInput('REMOTE_PATH');
+    const username = core.getInput('SSH_USERNAME', { required: true });
+    const ipAddress = core.getInput('SSH_IPADDRESS', { required: true });
+    const password = core.getInput('SSH_PASSWORD', { required: true });
+    const localPath = core.getInput('LOCAL_PATH', { required: true });
+    const remotePath = core.getInput('REMOTE_PATH', { required: true });
+
+    // Mask sensitive information
+    core.setSecret(password);
 
     // Install sshpass
     console.log('Installing sshpass...');
@@ -24,9 +26,12 @@ async function run() {
       `--exclude .git`
     ].join(' ');
 
-    // Run the rsync command
-    console.log('Running rsync...');
-    execSync(rsyncCommand, { stdio: 'inherit' });
+    // Log the command (excluding the password for security)
+    console.log('Executing command:');
+    console.log(rsyncCommand.replace(password, '*****'));
+
+    // Execute the rsync command
+    await exec(rsyncCommand);
 
     console.log('Deployment completed successfully.');
   } catch (error) {
