@@ -12,16 +12,5 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
-
-    - name: Install sshpass
-      run: sudo apt-get update && sudo apt-get install -y sshpass
-
-    - name: Deploy using rsync
-      env:
-        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-        SSH_IPADDRESS: ${{ secrets.SSH_IPADDRESS }}
-        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-      run: |
-        sshpass -p "$SSH_PASSWORD" rsync -rv \
-          -e "ssh -o StrictHostKeyChecking=no" \
-          ./ "$SSH_USERNAME@$SSH_IPADDRESS:/home/$SSH_USERNAME/test" --exclude .git
+    - name: Joke
+      uses: Sayemahamed/skills-write-javascript-actions/.github/actions/joke-action
