@@ -2,6 +2,9 @@
   "name": "deploystream",
   "module": "main.js",
   "type": "module",
+    "scripts": {
+    "build": "bun build main.js --outdir .github/actions/fileSync --outfile main.js --target=node"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
