@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Sync Files to VPS
-        uses: Sayemahamed/DeployStream/.github/actions/fileSync@main # Path to the directory containing action.yml
+        uses: Sayemahamed/DeployStream/.github/actions/fileSync@main 
         with:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_IPADDRESS: ${{ secrets.SSH_IPADDRESS }}
