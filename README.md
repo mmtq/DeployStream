@@ -81,6 +81,12 @@ To add these secrets:
 
 ---
 
+## **Showcase**
+Want to see DeployStream in action? Check out our showcase repository: [DeployStream Demo](https://github.com/mmtq/DeployStream-Demo)  
+This repository demonstrates how to integrate and use DeployStream in a real-world scenario. It includes a sample project and step-by-step examples to help you get started quickly.
+
+---
+
 ## **Contributing**
 Contributions are welcome! Feel free to open an issue or submit a pull request to improve DeployStream.
 
