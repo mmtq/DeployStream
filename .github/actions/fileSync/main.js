@@ -18817,7 +18817,8 @@ async function run() {
     const remotePath = core.getInput("REMOTE_PATH", { required: true });
     core.setSecret(password);
     console.log("Installing sshpass...");
-    await exec("sudo apt-get update && sudo apt-get install -y sshpass");
+    await exec("sudo apt-get update");
+    await exec("sudo apt-get install -y sshpass");
     const rsyncCommand = [
       `sshpass -p "${password}" rsync -rv`,
       `-e "ssh -o StrictHostKeyChecking=no"`,

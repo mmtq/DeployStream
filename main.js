@@ -15,7 +15,8 @@ async function run() {
 
     // Install sshpass
     console.log('Installing sshpass...');
-    await exec('sudo apt-get update && sudo apt-get install -y sshpass');
+    await exec('sudo apt-get update');
+    await exec('sudo apt-get install -y sshpass');
 
     // Construct the rsync command
     const rsyncCommand = [
