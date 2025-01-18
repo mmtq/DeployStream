@@ -17,7 +17,7 @@ DeployStream is a GitHub Workflow designed to streamline the process of deployin
 ### **Example Workflow**
 Add the following example workflow to your `.github/workflows/deploy.yml` file:
 
-```yaml
+```yamlgggg
 name: Deploy on Push
 
 on:
